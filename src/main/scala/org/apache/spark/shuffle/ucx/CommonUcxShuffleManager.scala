@@ -23,7 +23,8 @@ abstract class CommonUcxShuffleManager(val conf: SparkConf, isDriver: Boolean) e
   type ShuffleId = Int
   type MapId = Int
   type ReduceId = Long
-
+  
+  /* Load UCX/JUCX libraries as soon as possible to avoid collision with JVM when register malloc/mmap hook. */
   if (!isDriver) {
     NativeLibs.load();
   }
